@@ -1,1 +1,1 @@
-from .MICS import *
+from .mics import *
