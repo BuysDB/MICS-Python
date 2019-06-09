@@ -1,6 +1,6 @@
 from setuptools import setup
 setup(
-	name='mics-python',
+	name='mics',
 	version='0.01',
 	author='Buys de Barbanson',
 	author_email='code@buysdb.nl',
