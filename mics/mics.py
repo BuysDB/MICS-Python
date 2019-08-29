@@ -43,13 +43,16 @@ class MICS():
         LSBuV = nosignval * (self.get_full_scale_range(gain) / (32767.0/1000.0));
         return LSBuV*(-1 if sign else 1)
 
+    def __getitem__(self, port):
+        for gain, raw_val in  self._aquire_gain_inc(port,max_only=True).items():
+             return self.get_mv(raw_val, gain)
+
     def aquire_mv(self):
         results = {}
         for sensor_name, port in self.ports.items():
             if port is not None:
                 for gain, raw_val in  self._aquire_gain_inc(port,max_only=True).items():
                       results[sensor_name] = self.get_mv(raw_val, gain)
-
 
         return results
     # Aquire port voltage by starting with a low gain, but increasing until an unsafe voltage is reached
